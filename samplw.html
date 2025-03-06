@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>3D Carousel with Directional Logic</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            position: relative;
+            width: 100%;
+            height: 280px;
+        }
+
+        .card1 {
+            width: 150px;
+            height: 190px;
+            background: #ffff;
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+            position: absolute;
+            backface-visibility: hidden;
+            cursor: pointer;
+        }
+
+        .card1.active {
+            transform: translateX(0) rotateY(0deg) scale(1.2);
+            z-index: 10;
+        }
+
+        .card1.left {
+            transform: translateX(-80%) rotateY(60deg);
+        }
+
+        .card1.left-2 {
+            transform: translateX(-160%) rotateY(60deg);
+        }
+
+        .card1.left-3 {
+            transform: translateX(-240%) rotateY(60deg);
+        }
+
+        .card1.right {
+            transform: translateX(80%) rotateY(-60deg);
+        }
+
+        .card1.right-2 {
+            transform: translateX(160%) rotateY(-60deg);
+        }
+
+        .card1.right-3 {
+            transform: translateX(240%) rotateY(-60deg);
+        }
+
+        .card1 img {
+            width: 100%;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .card1 p {
+            text-align: center;
+            font-size: smaller;
+            color: #333;
+            /* margin-top: 10px; */
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .card1 {
+                width: 120px;
+                height: 200px;
+            }
+
+            .card1 img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="card1 active">
+            <img src="./img/Oval.webp"  height="150" width="133" alt="Card 1">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Oval</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Lorem ipsum dolor sit </small></p>
+            </div>
+        </div>
+        <div class="card1 left ">
+            <img class="mr-1" src="./img/Heart.webp" height="150" width="133" alt="Card 2">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Heart</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Lorem ipsum dolor sit </small></p>
+            </div>
+        </div>
+        <div class="card1 left-2">
+            <img src="./img/Asscher.webp" height="150" width="133" alt="Card 3">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Asscher</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Lorem ipsum dolor sit </small></p>
+            </div>
+        </div>
+        <div class="card1 left-3">
+            <img src="./img/Heart.webp"  height="150" width="133" alt="Card 4">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Heart</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Lorem ipsum dolor sit </small></p>
+            </div>
+        </div>
+        <div class="card1 right">
+            <img src="./img/Round.webp" alt="Card 5">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Asscher</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Round </small></p>
+            </div>
+        </div>
+        <div class="card1 right-2">
+            <img src="./img/Emerald.webp" alt="Card 6">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Emerald</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Lorem ipsum dolor sit </small></p>
+            </div>
+        </div>
+        <div class="card1 right-3">
+            <img src="./img/Round.webp" alt="Card 7">
+            <hr class="w-100 m-0 shadow-lg">
+            <div class="w-100" style="background-color: #fafafa;">
+                <p class="m-0"> <small><b> Round</b> </small></p>
+                <p class="mb-1" style="font-size: small; color: #f7c6b2;"> <small> Lorem ipsum dolor sit </small></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dots">
+        <div class="dot active" onclick="moveToCard(0)"></div>
+        <div class="dot" onclick="moveToCard(1)"></div>
+        <div class="dot" onclick="moveToCard(2)"></div>
+        <div class="dot" onclick="moveToCard(3)"></div>
+        <div class="dot" onclick="moveToCard(4)"></div>
+        <div class="dot" onclick="moveToCard(5)"></div>
+        <div class="dot" onclick="moveToCard(6)"></div>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card1');
+        const dots = document.querySelectorAll('.dot');
+        let activeIndex = 0;
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                const offset = (index - activeIndex + cards.length) % cards.length;
+                card.classList.remove('active', 'left', 'left-2', 'left-3', 'right', 'right-2', 'right-3');
+
+                if (offset === 0) {
+                    card.classList.add('active');
+                } else if (offset === 1 || offset === 2 || offset === 3) {
+                    card.classList.add(`right${offset > 1 ? '-' + offset : ''}`);
+                } else {
+                    const leftOffset = cards.length - offset;
+                    card.classList.add(`left${leftOffset > 1 ? '-' + leftOffset : ''}`);
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        }
+
+        function handleCardClick(clickedIndex) {
+            const offset = clickedIndex - activeIndex;
+
+            if (offset < -3 || offset > 3) {
+                // For wrap-around logic
+                activeIndex = clickedIndex;
+            } else {
+                // Move right if clicking left-side cards (positions 1-3)
+                // Move left if clicking right-side cards (positions 5-7)
+                activeIndex = clickedIndex;
+            }
+
+            updateCarousel();
+        }
+
+        function moveToCard(index) {
+            activeIndex = index;
+            updateCarousel();
+        }
+
+        // Add click event listeners to cards
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => handleCardClick(index));
+        });
+
+        // Initialize carousel
+        updateCarousel();
+    </script>
+</body>
+
+</html>
