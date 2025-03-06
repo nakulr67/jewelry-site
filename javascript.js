@@ -11,19 +11,27 @@ $(document).ready(function () {
 
 // ======================hero section javascript============
 const rings = document.querySelectorAll('.ring');
-    
+
 function getPositions() {
-    return window.innerWidth <= 768
-        ? {
+    if (window.innerWidth <= 768) {
+        return {
             1: { top: '2%', left: '20%', transform: 'translateX(-50%) ' },
             2: { top: '15%', left: '50%', transform: 'translate(-50%, -50%) ' },
-            3: { top: '1%', right: '10%', transform: 'translateX(30%) ', }
-        }
-        : {
+            3: { top: '1%', right: '10%', transform: 'translateX(30%) ' }
+        };
+    } else if (window.innerWidth <= 1024) { // iPad screens
+        return {
+            1: { top: '5%', left: '30%', transform: 'translateX(-50%)' },
+            2: { top: '25%', left: '55%', transform: 'translate(-50%, -50%)' },
+            3: { top: '5%', right: '15%', transform: 'translateX(30%)' }
+        };
+    } else {
+        return {
             1: { top: 0, left: '50%', transform: 'translateX(-50%)' },
             2: { top: '50%', right: 0, left: '65%', transform: 'translate(100%, -50%) rotate(90deg)' },
             3: { top: '50%', left: 0, transform: 'translate(0, -50%) rotate(-90deg)' }
         };
+    }
 }
 
 function rotateRings() {
