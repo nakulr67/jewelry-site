@@ -28,8 +28,8 @@ function getPositions() {
     } else {
         return {
             1: { top: 0, left: '50%', transform: 'translateX(-50%)' },
-            2: { top: '50%', right: 0, left: '65%', transform: 'translate(100%, -50%) rotate(90deg)' },
-            3: { top: '50%', left: 0, transform: 'translate(0, -50%) rotate(-90deg)' }
+            2: { top: '50%', right: 0, left: '65%', transform: 'translate(100%, -50%) rotate(0deg)' },
+            3: { top: '50%', left: 0, transform: 'translate(0, -50%) rotate(-0deg)' }
         };
     }
 }
@@ -133,3 +133,4 @@ cards.forEach((card, index) => {
 
 // Initialize carousel
 updateCarousel();
+
